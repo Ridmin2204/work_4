@@ -1,23 +1,25 @@
 #include <stdio.h>
-#include <locale.h>
 
 int main(void) {
-    setlocale(LC_NUMERIC, "C");
-    double a[10], sum = 0.0;
+    long double x, sum = 0.0L;
     for (int i = 0; i < 10; ++i) {
-        if (scanf("%lf", &a[i]) != 1) return 1;
-        sum += a[i];
+        if (scanf("%Lf", &x) != 1) return 1;
+        sum += x;
     }
-    double avg = sum / 10.0;
 
-    char buf[64];
-    int n = snprintf(buf, sizeof(buf), "%.2f", avg);
+    long double avg = sum / 10.0L;
 
-    while (n > 0 && buf[n - 1] == '0') buf[--n] = '\0';
-    if (n > 0 && buf[n - 1] == '.') buf[--n] = '\0';
+    long double cents_f = avg * 100.0L;
+    long double eps = 1e-12L * (cents_f >= 0.0L ? 1.0L : -1.0L);
+    cents_f += eps;
+    long long cents = (long long)(cents_f + (cents_f >= 0.0L ? 0.5L : -0.5L));
 
-    printf("%s\n", buf);
+    if (cents < 0) { putchar('-'); cents = -cents; }
+    long long whole = cents / 100;
+    long long frac  = cents % 100;
+    printf("%lld.%02lld\n", whole, frac);
     return 0;
 }
+
 
 
