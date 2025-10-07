@@ -11,5 +11,3 @@ int main(int argc, char** argv) {
     printf("%.3f\n", average);
 
 }
-
-

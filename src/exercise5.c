@@ -1,24 +1,27 @@
 #include <stdio.h>
-
-int main() {
-    double A[10][3], B[3][10], C[10][10] = {0};
-    for (int i = 0; i < 10; ++i)
-        for (int j = 0; j < 3; ++j)
-            scanf("%lf", &A[i][j]);
-
-    for (int i = 0; i < 3; ++i)
-        for (int j = 0; j < 10; ++j)
-            scanf("%lf", &B[i][j]);
-
-    for (int i = 0; i < 10; ++i)
-        for (int j = 0; j < 10; ++j)
-            for (int k = 0; k < 3; ++k)
-                C[i][j] += A[i][k] * B[k][j];
-
-    for (int i = 0; i < 10; ++i)
-        for (int j = 0; j < 10; ++j)
-            printf("%.0f ", C[i][j]);
-    printf("\n");
-    return 0;
+#include <stdlib.h>
+int main(int argc, char** argv) {
+    int mat1[10][3];
+    int mat2[3][10];
+    int mat3[10][10];
+    for(int i = 0; i < 10; ++i) {
+        for(int y = 0; y < 3; ++y){
+            scanf("%lf",&mat1[i][y]);
+        }
+    }
+    for(int i = 0; i < 3; ++i) {
+        for(int y = 0; y < 10; ++y){
+            scanf("%lf",&mat2[y][i]);
+        }
+    }
+    for(int i = 0; i < 10; i++) 
+        for(int j = 0; j < 10; j++) 
+            for(int k = 0; k < 3; k++) 
+                mat3[i][j] += mat1[i][k] * mat2[k][j];
+   for(int i = 0; i < 10; i++){;
+      for(int j = 0; j < 10; j++){
+        printf("%.2f ", mat3[i][j]);
+      } 
+   }
 }
-
+            
