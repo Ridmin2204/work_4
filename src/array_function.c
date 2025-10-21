@@ -14,7 +14,7 @@ void join_int_arrays(int* src1, size_t size_src1, int* src2, size_t size_src2, i
         dest[i] = src1[i];
     }
     for (size_t j = 0; j < size_src2; ++j) {
-        dest[size_src1 + j] = src2[j]
+        dest[size_src1 + j] = src2[j];
     }
 }
 
